@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import { MoralisProvider } from 'react-moralis'
 import { Sidebar } from '../components/Sidebar'
+import { ShopProvider } from '../context/ShopContext'
 
 
 function MyApp({ Component, pageProps }) {
@@ -9,7 +10,9 @@ function MyApp({ Component, pageProps }) {
   serverUrl={process.env.NEXT_PUBLIC_MORALIS_SERVER}
   appId={process.env.NEXT_PUBLIC_MORALIS_APP_ID}
   >
-      <Component {...pageProps} />
+    <ShopProvider>
+        <Component {...pageProps} />
+    </ShopProvider>
   </MoralisProvider>
   )
 }

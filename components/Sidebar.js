@@ -3,7 +3,7 @@ import logoc from '../assets/logoc.png'
 import logow from '../assets/logow.png'
 import logos from '../assets/logos.png'
 import Image from 'next/image'
-//import { ShopContext } from '../context/ShopContext'
+import { ShopContext } from '../context/ShopContext'
 import { ConnectButton } from 'web3uikit'
 import Link from 'next/link'
 import { MdVideogameAsset, MdToys} from 'react-icons/md'
@@ -28,18 +28,16 @@ const Sidebar = () => {
     setNickname: `text-lg font-bold flex flex-1 items-center mt-[20px] mb-[20px] text-white`,
   }
 
-    const isAuthenticated = true
-    const username = "chris"
+    // const isAuthenticated = true
+    // const username = "chris"
 
-//   const {
-//     isAuthenticated,
-//     buyTokens,
-//     getBalance,
-//     nickname,
-//     setNickname,
-//     username,
-//     handleSetUsername,
-//   } = useContext(AmazonContext)
+  const {
+    isAuthenticated,
+    nickname,
+    setNickname,
+    username,
+    handleSetUsername,
+  } = useContext(ShopContext)
 
   return (
     <div className={styles.container}>
@@ -62,20 +60,20 @@ const Sidebar = () => {
                     type='text'
                     placeholder='Username....'
                     className={styles.usernameInput}
-                    //value={nickname}
-                    //onChange={e => setNickname(e.target.value)}
+                    value={nickname}
+                    onChange={e => setNickname(e.target.value)}
                   />
                 </div>
                 <button
                   className={styles.setNickname}
-                  //onClick={handleSetUsername}
+                  onClick={handleSetUsername}
                 >
-                  Set Nickname
+                  Set Account Name
                 </button>
               </>
             ) : (
               <div>
-                <div className={styles.welcome}>Wecome {username}</div>
+                <div className={styles.welcome}>Welcome {username}</div>
               </div>
             )}
            </>
@@ -89,14 +87,16 @@ const Sidebar = () => {
           <div className={styles.menuItem}>
             <Image
               src={logos}
-              height={30}
-              width={30}
+              height={100}
+              width={100}
               className={styles.Logo}
             />
-            My Amazon
-            <br /> Board
           </div>
           </Link>
+        
+        <div className={styles.menuItem}> 
+             My Account
+        </div>
 
         <div className={styles.menuItem}> 
              <MdVideogameAsset />
@@ -127,6 +127,7 @@ const Sidebar = () => {
       </div>
       <div className={styles.companyName}>
         <Image src={logow} alt='amazon' height={100} width={100} />
+        Created by Crypto Wolfpup
       </div>
     </div>
   )
@@ -134,13 +135,3 @@ const Sidebar = () => {
 
 export default Sidebar
 
-
-// const Sidebar = () => {
-//   return (
-//     <div>
-//         <ConnectButton />
-//     </div>
-//   )
-// }
-
-//export default Sidebar
